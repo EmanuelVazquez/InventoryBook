@@ -8,39 +8,54 @@
     android:layout_margin="12dp"
     android:background="@color/purple_700"
     android:padding="8dp"
-    app:cardBackgroundColor="#673AB7">
+    app:cardBackgroundColor="#047cfc"
+    app:cardCornerRadius="20dp">
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/cardTitulo"
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                android:tooltipText="Titulo"
-                tools:text="Titulo" />
+                android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/cardUsuario"
+                <TextView
+                    android:id="@+id/cardTitulo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="18sp"
+                    android:tooltipText="Titulo"
+                    tools:text="Titulo" />
+
+                <TextView
+                    android:id="@+id/cardUsuario"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    android:tooltipText="Titulo"
+                    tools:text="Usuario" />
+
+            </LinearLayout>
+
+            <ImageButton
+                android:id="@+id/Qr_Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:textSize="16sp"
-                android:tooltipText="Titulo"
-                tools:text="Usuario" />
-        </LinearLayout>
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                app:srcCompat="@drawable/grupo_8" />
+        </RelativeLayout>
 
 
-    </RelativeLayout>
+
+    </LinearLayout>
 
 </androidx.cardview.widget.CardView>

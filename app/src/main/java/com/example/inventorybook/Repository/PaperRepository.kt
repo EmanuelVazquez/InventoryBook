@@ -1,48 +1,50 @@
 package com.example.inventorybook.Repository
 
+import android.content.Context
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.example.inventorybook.Interfaces.IPaperRepository
 import com.example.inventorybook.Modelos.Paper
+import com.google.android.gms.tasks.Task
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.QuerySnapshot
+import kotlinx.coroutines.tasks.await
 
 
 class PaperRepository: IPaperRepository {
 
     private val database = FirebaseFirestore.getInstance()
+    lateinit var papers: MutableList<Paper>
 
-    override fun add(paper: Paper): Boolean {
-        return database.collection("papers").document(paper.Id).set(
+    override fun add(paper: Paper, context: Context) {
+        database.collection("papers").document(paper.Id).set(
             hashMapOf("Id" to paper.Id, "Titulo" to paper.Titulo,
-            "Equipo" to paper.Equipo,
-            "Modelo" to paper.Model,
-            "Serial" to paper.Serial,
-            "Factura" to paper.Factura,
-            "Fecha" to paper.Fecha,
-            "WindowsKey" to paper.WindowsKey,
-            "Departamento" to paper.Departamento,
-            "User" to paper.Usuario)
-        ).isComplete
-    }
-
-    override fun getById(id: String): Paper {
-        TODO("Not yet implemented")
-    }
-
-    override fun getAll(): MutableList<Paper> {
-        val dataList = mutableListOf<Paper>()
-        var res = database.collection("papers").get().addOnSuccessListener { resultado ->
-            if(!resultado.isEmpty){
-                for(document in resultado){
-                    val paper = document.toObject(Paper::class.java)
-                    dataList.add(paper)
-                }
-
-            }
-
+                "Equipo" to paper.Equipo,
+                "Modelo" to paper.Modelo,
+                "Serial" to paper.Serial,
+                "Factura" to paper.Factura,
+                "Fecha" to paper.Fecha,
+                "WindowsKey" to paper.WindowsKey,
+                "Departamento" to paper.Departamento,
+                "User" to paper.User)
+        ).addOnSuccessListener {
+            Toast.makeText(context, "Registro con exito", Toast.LENGTH_SHORT).show()
+        }.addOnFailureListener{
+            Toast.makeText(context, "Fallo en el registro", Toast.LENGTH_SHORT).show()
         }
-        Log.d("Usuarios: ", "$dataList")
-        return dataList
     }
 
+    override fun getById(id: String): Task<DocumentSnapshot> {
+        return database.collection("papers").document(id).get()
+    }
+
+    override fun getAll(): Task<QuerySnapshot> {
+        return database.collection("papers").get()
+    }
+
+    fun getDocumentList(): Task<QuerySnapshot> {
+        return database.collection("nombreDeLaColeccion").get()
+    }
 }

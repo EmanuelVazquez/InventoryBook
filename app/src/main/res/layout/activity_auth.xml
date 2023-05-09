@@ -7,31 +7,7 @@
     android:background="#1A237E"
     tools:context=".AuthActivity">
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="54dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/bottonsocial"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.426"
-        app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/btn_register"
-        app:srcCompat="@drawable/tele" />
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/bottonsocial"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toStartOf="@+id/imageView2"
-        app:layout_constraintHorizontal_bias="0.523"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_register"
-        app:srcCompat="@drawable/gooogle" />
 
     <Button
         android:id="@+id/btn_login"
@@ -42,7 +18,7 @@
         android:layout_marginEnd="48dp"
         android:background="@drawable/bottonrounded"
         android:onClick="accessMenu"
-        android:text="Login"
+        android:text="@string/login"
         android:textColor="#000000"
         app:iconTint="#ECE2E2"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,9 +33,10 @@
         android:layout_marginStart="48dp"
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="312dp"
+        android:autofillHints=""
         android:ems="10"
-        android:hint="Contraseña"
-        android:inputType="textPersonName"
+        android:hint="@string/contrase_a"
+        android:inputType="textPassword"
         android:padding="17dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,24 +52,12 @@
         android:layout_marginEnd="48dp"
         android:background="@drawable/bottonroundedborder"
         android:onClick="registerAccess"
-        android:text="Crear Cuenta"
+        android:text="@string/crear_cuenta"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputPassword" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="52dp"
-        android:background="@drawable/bottonsocial"
-        android:scaleType="fitCenter"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_register"
-        app:srcCompat="@drawable/facebook_app_symbol" />
 
     <TextView
         android:id="@+id/textView2"
@@ -101,7 +66,7 @@
         android:layout_marginStart="150dp"
         android:layout_marginTop="72dp"
         android:layout_marginEnd="150dp"
-        android:text="Inventary Book"
+        android:text="@string/inventary_book"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
         android:textStyle="bold"
@@ -118,7 +83,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2"
-        app:srcCompat="@drawable/icon_usuario" />
+        app:srcCompat="@drawable/icon_usuario"
+        android:contentDescription="TODO" />
 
     <EditText
         android:id="@+id/inputEmailText"

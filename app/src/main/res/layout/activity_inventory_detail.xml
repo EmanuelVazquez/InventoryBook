@@ -11,12 +11,19 @@
         android:id="@+id/typeTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Computadoras" />
+        android:text="Equipos"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:textSize="25dp"
+        android:background="#1A237E"
+        android:textColor="@color/white"
+        android:gravity="center"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/inventoryRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+
         android:layout_weight="1" />
 </LinearLayout>

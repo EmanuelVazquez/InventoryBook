@@ -2,15 +2,17 @@ package com.example.inventorybook
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageButton
-import android.widget.Toast
+import android.widget.TextView
 import com.example.inventorybook.Modelos.Paper
 import com.example.inventorybook.Repository.PaperRepository
 import java.util.*
 
 class NewPaperActivity : AppCompatActivity() {
 
+    lateinit var encabezadoText: TextView
     lateinit var tituloText: EditText
     lateinit var equipoText: EditText
     lateinit var modeloText: EditText
@@ -25,10 +27,7 @@ class NewPaperActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_paper)
-
-        setup()
-    }
-    private fun setup(){
+        encabezadoText = findViewById(R.id.textView3)
         tituloText = findViewById(R.id.inputTitulo)
         equipoText = findViewById(R.id.inputEquipo)
         modeloText = findViewById(R.id.inputModelo)
@@ -38,8 +37,24 @@ class NewPaperActivity : AppCompatActivity() {
         windowsKey = findViewById(R.id.inputClave)
         usuarioText = findViewById(R.id.inputUsuario)
         dptoText = findViewById(R.id.inputDpto)
-
         confirmButton = findViewById(R.id.confirmNewPaperButton)
+        val id = intent.getStringExtra("Id")
+        if(id.isNullOrEmpty()){
+           setupNew()
+        }else{
+            PaperRepository().getById(id).addOnSuccessListener {
+                if(it.exists()){
+                    val paper = it.toObject(Paper::class.java)
+                    if (paper != null) {
+                        setupDetail(paper)
+                    }
+                }
+            }
+        }
+
+    }
+    private fun setupNew(){
+        encabezadoText.text = "Nueva Hoja"
 
         confirmButton.setOnClickListener(){
             if(tituloText.text.toString().isNotEmpty() &&
@@ -57,22 +72,36 @@ class NewPaperActivity : AppCompatActivity() {
                     equipoText.text.toString(),
                     modeloText.text.toString(),
                     serialText.text.toString(),
-                    facturaText.text.toString(),
                     fechaText.text.toString(),
+                    facturaText.text.toString(),
                     windowsKey.text.toString(),
                     usuarioText.text.toString(),
                     dptoText.text.toString(),
                 )
 
                 val paperRepository = PaperRepository()
-                if(paperRepository.add(paper)){
-                    Toast.makeText(this, "Registro con exito", Toast.LENGTH_SHORT).show()
-                }
-                else
-                    Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show()
+                paperRepository.add(paper, this)
+                finish()
 
             }
         }
+
+    }
+    private fun setupDetail(paper: Paper){
+        encabezadoText.text = "Detalle"
+        confirmButton.visibility = View.GONE
+
+        tituloText.setText(paper.Titulo)
+        equipoText.setText(paper.Equipo)
+        modeloText.setText(paper.Modelo)
+        serialText.setText(paper.Serial)
+        fechaText.setText(paper.Fecha)
+        facturaText.setText(paper.Factura)
+        windowsKey.setText(paper.WindowsKey)
+        usuarioText.setText(paper.User)
+        dptoText.setText(paper.Departamento)
+
+
     }
 
 }

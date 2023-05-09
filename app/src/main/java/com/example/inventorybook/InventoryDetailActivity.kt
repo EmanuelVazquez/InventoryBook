@@ -10,20 +10,26 @@ import com.example.inventorybook.Repository.PaperRepository
 class InventoryDetailActivity : AppCompatActivity() {
 
     private lateinit var listView: RecyclerView
-    lateinit var paperList: MutableList<Paper>
+    private lateinit var papers: MutableList<Paper>
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_inventory_detail)
 
         listView = findViewById(R.id.inventoryRecyclerView)
-        paperList = PaperRepository().getAll()
-
-        establecerAdaptador()
-    }
-
-    private fun establecerAdaptador(){
         listView.layoutManager = LinearLayoutManager(this)
-        listView.adapter = EquipoAdapter(this,paperList)
+        papers = mutableListOf()
+
+        PaperRepository().getAll().addOnSuccessListener {
+            for (document in it.documents) {
+                val paper: Paper? = document.toObject(Paper::class.java)
+                if (paper != null) {
+                    papers.add(paper)
+                }
+            }
+            listView.adapter = EquipoAdapter(this,papers)
+        }
+
+
     }
 
 }

@@ -16,7 +16,7 @@ class InventoryActivity : AppCompatActivity() {
 
     private fun setup(){
         val paperRepository = PaperRepository()
-        val papers = paperRepository.getAll()
+
     }
 
     fun InventoryDetailAccess(view: View){
