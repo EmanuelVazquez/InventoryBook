@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#1A237E"
+    android:background="#2F3AA8"
     android:orientation="vertical"
     tools:context=".AuthActivity">
 
@@ -12,8 +12,8 @@
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="60dp"
         android:layout_gravity="center"
+        android:layout_margin="60dp"
         android:text="@string/inventary_book"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
@@ -29,8 +29,6 @@
         app:srcCompat="@drawable/icon_usuario" />
 
 
-
-
     <EditText
         android:id="@+id/inputEmailText"
         android:layout_width="match_parent"
@@ -39,21 +37,29 @@
         android:layout_marginEnd="48dp"
         android:ems="10"
         android:hint="Email"
+        android:inputType="textEmailAddress"
         android:padding="17dp"
-        android:inputType="textEmailAddress" />
+        android:textColor="@color/white"
+        android:textColorHint="@color/white" />
+
     <EditText
         android:id="@+id/inputPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginStart="48dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="10dp"
         android:autofillHints=""
         android:ems="10"
         android:hint="@string/contrase_a"
         android:inputType="textPassword"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:padding="17dp"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:textColorHint="@color/white" />
+
     <Button
         android:id="@+id/btn_login"
         android:layout_width="match_parent"
@@ -64,8 +70,8 @@
         android:background="@drawable/bottonrounded"
         android:onClick="accessMenu"
         android:text="@string/login"
-        android:textColor="#000000"
         app:iconTint="#ECE2E2" />
+
     <Button
         android:id="@+id/btn_register"
         android:layout_width="match_parent"
@@ -76,9 +82,6 @@
         android:background="@drawable/bottonroundedborder"
         android:onClick="registerAccess"
         android:text="@string/crear_cuenta" />
-
-
-
 
 
 </LinearLayout>
